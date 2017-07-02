@@ -84,7 +84,7 @@ namespace FileExtensionChanger.Lib
                     newFileName = Path.ChangeExtension(inputFile, _options.NewExtension);
                     // e.g., myfile.config.disabled ends with myfile.config instead of myfile.config.config
                     while (Path.GetFileNameWithoutExtension(newFileName).EndsWith(_options.NewExtension)) {
-                        newFileName = Path.GetFileNameWithoutExtension(newFileName);
+                        newFileName = Path.Combine(Path.GetDirectoryName(newFileName), Path.GetFileNameWithoutExtension(newFileName));
                     }
                     break;
                 case ChangeExtensionStrategy.AppendNewExtension:
